@@ -67,21 +67,25 @@ def filter(cities, customer_types, genders):
     return data_filtered, sales_by_product_line, sales_by_hour
 
 
+def to_text(value):
+    return '{:,}'.format(int(value))
+
+
 with tgb.Page() as page:
     tgb.toggle(theme=True)
     tgb.text("📊 Sales Dashboard", class_name="h1 text-center pb2")
 
     with tgb.layout("1 1 1", class_name="p1"):
         with tgb.part(class_name="card"):
-            tgb.text("Total Sales:", class_name="h2")
-            tgb.text("US $ {int(data_filtered['Total'].sum())}", class_name="h4")
+            tgb.text("## Total Sales:", mode="md")
+            tgb.text("US $ {to_text(data_filtered['Total'].sum())}", class_name="h4")
 
         with tgb.part(class_name="card"):
-            tgb.text("Average Sales:", class_name="h2")
-            tgb.text("{int(data_filtered['Total'].mean())}", class_name="h4")
+            tgb.text("## Average Sales:", mode="md")
+            tgb.text("{to_text(data_filtered['Total'].mean())}", class_name="h4")
 
         with tgb.part(class_name="card"):
-            tgb.text("Average Rating:", class_name="h2")
+            tgb.text("## Average Rating:", mode="md")
             tgb.text(
                 "{round(data_filtered['Rating'].mean(), 1)}"
                 + "{'⭐' * int(round(round(data_filtered['Rating'].mean(), 1), 0))}",
@@ -135,6 +139,9 @@ with tgb.Page() as page:
             layout=layout,
             title="Sales by Product Line",
         )
+
+    with tgb.expandable(title="Filtered Data", expanded=False):
+        tgb.table("{data_filtered}")
 
 
 if __name__ == "__main__":
