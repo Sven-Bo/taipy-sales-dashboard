@@ -68,7 +68,7 @@ def filter(cities, customer_types, genders):
 
 
 def to_text(value):
-    return '{:,}'.format(int(value))
+    return "{:,}".format(int(value))
 
 
 with tgb.Page() as page:
@@ -140,7 +140,7 @@ with tgb.Page() as page:
             title="Sales by Product Line",
         )
 
-    with tgb.expandable(title="Filtered Data", expanded=False):
+    with tgb.expandable(title="Filtered Data", expanded=False, class_name="mt1"):
         tgb.table("{data_filtered}")
 
 
