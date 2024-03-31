@@ -86,7 +86,7 @@ with tgb.Page() as page:
 
         with tgb.part(class_name="card"):
             tgb.text("## Average Sales:", mode="md")
-            tgb.text("{to_text(data_filtered['Total'].mean())}", class_name="h4")
+            tgb.text("US $ {to_text(data_filtered['Total'].mean())}", class_name="h4")
 
         with tgb.part(class_name="card"):
             tgb.text("## Average Rating:", mode="md")
