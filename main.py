@@ -43,27 +43,31 @@ def on_filter(state):
 
 
 def filter(cities, customer_types, genders):
+    # Filter the data based on the user selections
     data_filtered = data[
         data["City"].isin(cities)
         & data["Customer_type"].isin(customer_types)
         & data["Gender"].isin(genders)
     ]
 
-    # Sales by product lime
+    # Calculate sales by product line, summing up the "Total" for each product line, and sorting the results
     sales_by_product_line = (
         data_filtered[["Product line", "Total"]]
-        .groupby(by=["Product line"])
-        .sum()[["Total"]]
-        .sort_values(by="Total")
+        .groupby(by="Product line")
+        .sum()
+        .sort_values(by="Total", ascending=True)
+        .reset_index()  # Converts the "Product line" index into a column
     )
-    sales_by_product_line["Product line"] = sales_by_product_line.index
 
-    # Sales by hour
+    # Calculate sales by hour, summing up the "Total" for each hour
     sales_by_hour = (
-        data_filtered[["hour", "Total"]].groupby(by=["hour"]).sum()[["Total"]]
+        data_filtered[["hour", "Total"]]
+        .groupby(by="hour")
+        .sum()
+        .reset_index()  # Converts the "hour" index into a column
     )
-    sales_by_hour["hour"] = sales_by_hour.index
 
+    # Return the filtered dataset, sales by product line, and sales by hour
     return data_filtered, sales_by_product_line, sales_by_hour
 
 
@@ -88,7 +92,7 @@ with tgb.Page() as page:
             tgb.text("## Average Rating:", mode="md")
             tgb.text(
                 "{round(data_filtered['Rating'].mean(), 1)}"
-                + "{'⭐' * int(round(round(data_filtered['Rating'].mean(), 1), 0))}",
+                + "{'⭐' * int(round(data_filtered['Rating'].mean()))}",
                 class_name="h4",
             )
 
@@ -139,9 +143,6 @@ with tgb.Page() as page:
             layout=layout,
             title="Sales by Product Line",
         )
-
-    with tgb.expandable(title="Filtered Data", expanded=False, class_name="mt1"):
-        tgb.table("{data_filtered}")
 
 
 if __name__ == "__main__":
