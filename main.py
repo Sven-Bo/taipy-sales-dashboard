@@ -155,4 +155,5 @@ if __name__ == "__main__":
         debug=True,
         watermark="",
         margin="4em",
+        favicon="images/favicon-32x32.png"
     )
