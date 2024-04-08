@@ -12,7 +12,7 @@ ctrl-c
 ```
 
 ## Demo
-Sales Dashboard: https://dashboard.taipy.cloud/
+Sales Dashboard: https://taipy.salesdashboard.pythonandvba.com/
 
 
 ## 🤝 Get to Know Me & Stay Connected
