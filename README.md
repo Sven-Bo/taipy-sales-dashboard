@@ -5,6 +5,8 @@ Sales Dashboard built-in Python and the Taipy library to visualize Excel data.
 ## Video Tutorial
 [![YouTube Video](https://img.youtube.com/vi/_KaVKeP5xIA/0.jpg)](https://youtu.be/_KaVKeP5xIA)
 
+## Dashboard Demo
+![Taipy Dashboard Demo](images/Taipy_Dashboard_Demo.gif)
 
 ## Run the app
 ```Powershell
