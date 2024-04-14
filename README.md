@@ -1,6 +1,6 @@
 # 📊 Interactive Sales Dashboard with Python (Taipy)
 
-Sales Dashboard built-in Python and the Taipy library to visualize Excel data.
+Sales Dashboard built-in Python and the Taipy library to visualize Excel data.<br>
 👉 **Check out the live website here:** https://taipy.salesdashboard.pythonandvba.com/
 
 ## Video Tutorial
